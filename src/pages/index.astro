@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArtGallery from '../components/ArtGallery.astro';
+---
+
+<Layout title="Galería de Arte 3D Interactiva">
+  <main>
+    <h1>Bienvenido a la Galería de Alejo de <b style="color: #939292">Arte 3D</b></h1>
+    <p class="instructions">
+      Explora nuestra galería de arte interactiva en 3D con obras famosas. Usa el ratón para navegar:
+      <br />
+      <strong>Clic izquierdo + arrastrar:</strong> Rotar la cámara
+      <br />
+      <strong>Clic derecho + arrastrar:</strong> Mover la cámara
+      <br />
+      <strong>Rueda del ratón:</strong> Zoom
+    </p>
+    <ArtGallery />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions strong {
+    color: #939292;
+  }
+</style>

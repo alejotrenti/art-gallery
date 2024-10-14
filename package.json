@@ -1,0 +1,20 @@
+{
+  "name": "interactive-3d-art-gallery",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.15.3",
+    "git": "^0.1.5",
+    "three": "^0.153.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.152.1"
+  }
+}

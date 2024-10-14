@@ -1,0 +1,152 @@
+---
+---
+<div id="art-gallery"></div>
+
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+  // Set up scene, camera, and renderer
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000);
+  document.getElementById('art-gallery').appendChild(renderer.domElement);
+
+  // Add orbit controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+
+  // Create gallery room
+  const roomGeometry = new THREE.BoxGeometry(30, 10, 30);
+  const roomMaterials = [
+    new THREE.MeshStandardMaterial({ color: 0xDDDDDD, side: THREE.BackSide }), // right
+    new THREE.MeshStandardMaterial({ color: 0xDDDDDD, side: THREE.BackSide }), // left
+    new THREE.MeshStandardMaterial({ color: 0xFFFFFF, side: THREE.BackSide }), // top
+    new THREE.MeshStandardMaterial({ color: 0xCCCCCC, side: THREE.BackSide }), // bottom
+    new THREE.MeshStandardMaterial({ color: 0xDDDDDD, side: THREE.BackSide }), // front
+    new THREE.MeshStandardMaterial({ color: 0xDDDDDD, side: THREE.BackSide })  // back
+  ];
+  const room = new THREE.Mesh(roomGeometry, roomMaterials);
+  scene.add(room);
+
+  // Add lighting
+  const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
+  scene.add(ambientLight);
+
+  const spotLight1 = new THREE.SpotLight(0xFFFFFF, 1);
+  spotLight1.position.set(0, 5, 0);
+  spotLight1.angle = Math.PI / 4;
+  spotLight1.penumbra = 0.1;
+  spotLight1.decay = 2;
+  spotLight1.distance = 200;
+  scene.add(spotLight1);
+
+  // Function to create a painting
+  function createPainting(imageUrl, width, height, position, rotation) {
+    const loader = new THREE.TextureLoader();
+    loader.load(imageUrl, (texture) => {
+      material.map = texture;
+    });
+    const texture = loader.load(imageUrl, () => {
+      renderer.render(scene, camera);
+    });
+    texture.encoding = THREE.sRGBEncoding;
+    const geometry = new THREE.PlaneGeometry(width, height);
+    const material = new THREE.MeshStandardMaterial({ 
+      map: texture,
+      side: THREE.DoubleSide
+    });
+    const painting = new THREE.Mesh(geometry, material);
+    painting.position.copy(position);
+    painting.rotation.copy(rotation);
+    scene.add(painting);
+
+    // Add frame
+    const frameGeometry = new THREE.BoxGeometry(width + 0.2, height + 0.2, -0.5);
+    const frameMaterial = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
+    const frame = new THREE.Mesh(frameGeometry, frameMaterial);
+    frame.position.copy(position);
+    frame.rotation.copy(rotation);
+    frame.position.z -= 0.05;
+    scene.add(frame);
+  }
+
+  // Add paintings
+  const paintings = [
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
+      width: 2.5, height: 3.7,
+      position: new THREE.Vector3(0, 0, -14.9),
+      rotation: new THREE.Euler(0, 0, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg',
+      width: 4, height: 3.2,
+      position: new THREE.Vector3(-14.9, 0, -5),
+      rotation: new THREE.Euler(0, Math.PI / 2, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_van_Gogh_-_Sunflowers_-_VGM_F458.jpg/800px-Vincent_van_Gogh_-_Sunflowers_-_VGM_F458.jpg',
+      width: 2.5, height: 3.2,
+      position: new THREE.Vector3(14.9, 0, 0),
+      rotation: new THREE.Euler(0, -Math.PI / 2, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1280px-Tsunami_by_hokusai_19th_century.jpg',
+      width: 4, height: 2.8,
+      position: new THREE.Vector3(5, 0, -14.9),
+      rotation: new THREE.Euler(0, 0, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1280px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg',
+      width: 4.5, height: 2,
+      position: new THREE.Vector3(-5, 0, -14.9),
+      rotation: new THREE.Euler(0, 0, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg',
+      width: 2.5, height: 3,
+      position: new THREE.Vector3(-14.9, 0, 5),
+      rotation: new THREE.Euler(0, Math.PI / 2, 0)
+    },
+    {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/1280px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg',
+      width: 4.5, height: 3,
+      position: new THREE.Vector3(0, 0, 14.9),
+      rotation: new THREE.Euler(0, Math.PI, 0)
+    }
+  ];
+
+  paintings.forEach(painting => createPainting(painting.url, painting.width, painting.height, painting.position, painting.rotation));
+
+  // Set up camera position
+  camera.position.set(0, 0, 5);
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Handle window resize
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+  window.addEventListener('resize', onWindowResize, false);
+</script>
+
+<style>
+  #art-gallery {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+</style>
