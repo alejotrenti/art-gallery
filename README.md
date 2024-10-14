@@ -2,13 +2,11 @@
 
 Este es un proyecto de galería de arte interactiva en 3D, creado utilizando Bolt.new y tecnologías de inteligencia artificial para ofrecer una experiencia única y envolvente.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/tu_usuario/tu_repositorio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/tu_usuario/tu_repositorio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tu_usuario/tu_repositorio?devcontainer_path=.devcontainer/default/devcontainer.json)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/)
 
 > 🎨 **Artista digital?** ¡Elimina este archivo y empieza a crear algo increíble!
 
-![Galería de Arte](https://link_a_una_imagen_de_tu_proyecto.jpg)
+![Galería de Arte](![image](https://github.com/user-attachments/assets/e062ecaa-4b17-4e44-93ad-3e35d81be45a))
 
 ## 🚀 Estructura del Proyecto
 
@@ -36,6 +34,6 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 | npm run bolt ...         | Ejecuta comandos CLI como bolt add, bolt check |
 | npm run bolt -- --help   | Obtén ayuda usando la CLI de Bolt.new           |
 
-## 👀 ¿Quieres aprender más?
+## 👀 ¿Quieres intentarlo por tu cuenta? ?
 
-No dudes en consultar [nuestra documentación](https://docs.bolt.new) o unirte a nuestro [servidor de Discord](https://bolt.new/chat).
+Accede a [bolt.new](https://docs.bolt.new) y usa los tokens gratuitamente.
