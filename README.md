@@ -6,7 +6,7 @@ Este es un proyecto de galería de arte interactiva en 3D, creado utilizando Bol
 
 > 🎨 **Artista digital?** ¡Elimina este archivo y empieza a crear algo increíble!
 
-![Galería de Arte](![image](https://github.com/user-attachments/assets/e062ecaa-4b17-4e44-93ad-3e35d81be45a))
+![image](https://github.com/user-attachments/assets/e062ecaa-4b17-4e44-93ad-3e35d81be45a)
 
 ## 🚀 Estructura del Proyecto
 
